@@ -1,0 +1,72 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "sqlite"
+  url      = "file:./dev.db"
+}
+
+enum InsightType {
+  daily
+  weekly
+  subscription
+}
+
+enum FeedbackRating {
+  accurate
+  inaccurate
+}
+
+enum FeedbackType {
+  daily
+  weekly
+  subscription
+}
+
+model User {
+  id        String       @id @default(cuid())
+  createdAt DateTime     @default(now())
+  transactions Transaction[]
+  insights  Insight[]
+  feedbacks Feedback[]
+}
+
+model Transaction {
+  id               String   @id @default(cuid())
+  userId           String
+  user             User     @relation(fields: [userId], references: [id])
+  date             DateTime
+  amount           Float
+  currency         String
+  method           String
+  merchantRaw      String
+  merchantClean    String
+  inferredCategory String
+  referenceId      String?
+  rawText          String
+  createdAt        DateTime @default(now())
+}
+
+model Insight {
+  id             String     @id @default(cuid())
+  userId         String
+  user           User       @relation(fields: [userId], references: [id])
+  dateRangeStart DateTime
+  dateRangeEnd   DateTime
+  type           InsightType
+  text           String
+  metadata       Json
+  createdAt      DateTime   @default(now())
+}
+
+model Feedback {
+  id        String         @id @default(cuid())
+  userId    String
+  user      User           @relation(fields: [userId], references: [id])
+  insightId String
+  insight   Insight        @relation(fields: [insightId], references: [id])
+  type      FeedbackType
+  rating    FeedbackRating
+  createdAt DateTime       @default(now())
+}
