@@ -381,24 +381,6 @@ export default function SpendingDashboard() {
     };
   }, [entries]);
 
-  const coverage = useMemo(() => {
-    const totalEntries = entries.length || 1;
-    const withTime = entries.filter((entry) => entry.time).length;
-    const withLocation = entries.filter((entry) => entry.location).length;
-    const withChannel = entries.filter((entry) => entry.channel).length;
-    const withDevice = entries.filter((entry) => entry.device).length;
-    const withNotes = entries.filter((entry) => entry.note).length;
-
-    return {
-      totalEntries,
-      withTime,
-      withLocation,
-      withChannel,
-      withDevice,
-      withNotes
-    };
-  }, [entries]);
-
   const insights = useMemo(() => {
     const total = summary.total || 1;
     const [topCategoryName, topCategoryValue] = summary.topCategory ?? ["--", 0];
@@ -528,27 +510,6 @@ export default function SpendingDashboard() {
               Explore analytics
             </button>
           </div>
-        </div>
-        <div className="mt-6 flex flex-wrap gap-2">
-          {[
-            "Overview",
-            "Category mix",
-            "Merchant heatmap",
-            "Location pulse",
-            "Subscriptions",
-            "AI Q&A"
-          ].map((item, index) => (
-            <span
-              key={item}
-              className={`rounded-full px-4 py-1 text-xs font-semibold ${
-                index === 0
-                  ? "bg-white text-slate-900"
-                  : "border border-white/30 text-slate-200"
-              }`}
-            >
-              {item}
-            </span>
-          ))}
         </div>
         <div className="mt-8 grid gap-4 md:grid-cols-3">
           <div className="rounded-2xl border border-white/10 bg-white/10 p-4 backdrop-blur">
@@ -889,7 +850,7 @@ export default function SpendingDashboard() {
                 type="text"
                 value={formState.note}
                 onChange={(event) => handleChange("note", event.target.value)}
-                placeholder="Travel reimbursable, shared expense"
+                placeholder="Travel reimburseable, shared expense"
               />
             </label>
             <div className="flex flex-wrap gap-3">
@@ -997,26 +958,6 @@ export default function SpendingDashboard() {
                   <p className="text-xs text-slate-500">{item.desc}</p>
                 </div>
               ))}
-            </div>
-            <div className="rounded-2xl border border-slate-100 bg-white px-4 py-3">
-              <p className="text-xs font-semibold uppercase tracking-wide text-slate-500">
-                Coverage snapshot
-              </p>
-              <div className="mt-3 grid gap-3 sm:grid-cols-2">
-                {[
-                  { label: "Timestamp coverage", value: coverage.withTime },
-                  { label: "Location coverage", value: coverage.withLocation },
-                  { label: "Channel coverage", value: coverage.withChannel },
-                  { label: "Device coverage", value: coverage.withDevice }
-                ].map((item) => (
-                  <div key={item.label} className="space-y-1">
-                    <p className="text-xs text-slate-500">{item.label}</p>
-                    <p className="text-sm font-semibold text-slate-900">
-                      {item.value}/{coverage.totalEntries} transactions
-                    </p>
-                  </div>
-                ))}
-              </div>
             </div>
           </div>
         </div>
