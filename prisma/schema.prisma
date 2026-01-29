@@ -7,23 +7,6 @@ datasource db {
   url      = "file:./dev.db"
 }
 
-enum InsightType {
-  daily
-  weekly
-  subscription
-}
-
-enum FeedbackRating {
-  accurate
-  inaccurate
-}
-
-enum FeedbackType {
-  daily
-  weekly
-  subscription
-}
-
 model User {
   id        String       @id @default(cuid())
   createdAt DateTime     @default(now())
@@ -54,10 +37,11 @@ model Insight {
   user           User       @relation(fields: [userId], references: [id])
   dateRangeStart DateTime
   dateRangeEnd   DateTime
-  type           InsightType
+  type           String
   text           String
-  metadata       Json
+  metadata       String
   createdAt      DateTime   @default(now())
+  feedbacks      Feedback[]
 }
 
 model Feedback {
@@ -66,7 +50,7 @@ model Feedback {
   user      User           @relation(fields: [userId], references: [id])
   insightId String
   insight   Insight        @relation(fields: [insightId], references: [id])
-  type      FeedbackType
-  rating    FeedbackRating
+  type      String
+  rating    String
   createdAt DateTime       @default(now())
 }
