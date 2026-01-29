@@ -10,7 +10,22 @@ const currencyFormatter = new Intl.NumberFormat("en-IN", {
   maximumFractionDigits: 0
 });
 
-const initialEntries = [
+type SpendingEntry = {
+  id: string;
+  date: string;
+  time?: string;
+  merchant: string;
+  category: string;
+  amount: number;
+  method: string;
+  city: string;
+  location?: string;
+  channel?: string;
+  device?: string;
+  note?: string;
+};
+
+const initialEntries: SpendingEntry[] = [
   {
     id: "txn-1",
     date: "2024-08-01",
@@ -246,8 +261,6 @@ const initialEntries = [
     device: "Pixel 8"
   }
 ];
-
-type SpendingEntry = typeof initialEntries[number];
 
 type NewEntry = {
   date: string;
