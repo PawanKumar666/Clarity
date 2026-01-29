@@ -1,0 +1,19 @@
+date,merchant,category,amount,method,city
+2024-08-01,Blinkit,Groceries,1180,UPI,Bengaluru
+2024-08-02,IndiGo,Travel,6450,Card,Bengaluru
+2024-08-03,Swiggy,Dining,520,UPI,Bengaluru
+2024-08-05,Cult Fit,Health,1899,Card,Bengaluru
+2024-08-06,Netflix,Subscriptions,649,Card,Bengaluru
+2024-08-08,Zomato,Dining,740,UPI,Bengaluru
+2024-08-10,Uber,Transport,410,UPI,Bengaluru
+2024-08-12,Amazon,Shopping,2599,Card,Bengaluru
+2024-08-14,Tata Power,Utilities,1220,NetBanking,Bengaluru
+2024-08-16,IRCTC,Travel,2250,Card,Chennai
+2024-08-18,BigBasket,Groceries,1525,UPI,Bengaluru
+2024-08-20,Croma,Electronics,8999,Card,Chennai
+2024-08-22,FreshToHome,Groceries,980,UPI,Bengaluru
+2024-08-24,BookMyShow,Entertainment,1250,Card,Chennai
+2024-08-26,Apollo Pharmacy,Health,680,UPI,Bengaluru
+2024-08-28,Reliance Digital,Shopping,4490,Card,Hyderabad
+2024-08-29,Postpaid,Utilities,799,NetBanking,Bengaluru
+2024-08-30,Starbucks,Dining,360,UPI,Bengaluru
